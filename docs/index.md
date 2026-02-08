@@ -64,13 +64,13 @@ Full details are available in the specifications below.
 ### Core Documents
 
 - **BECIA v4 Architecture**  
-  👉 [`becia_architecture.md`](becia_architecture.md)
+  👉 [`becia_architecture_spec.md`](becia_architecture_spec.md)
 
 - **SSPS v1.0 Protocol Specification**  
-  👉 [`ssps_protocol.md`](ssps_protocol.md)
+  👉 [`ssps_protocol_spec.md`](ssps_protocol_spec.md)
 
 - **PaxCore v1.0 Memory Kernel Specification**  
-  👉 [`paxcore_spec.md`](paxcore_spec.md)
+  👉 [`paxcore__kernel_spec.md`](paxcore_kernel_spec.md)
 
 - **Snapshot Profile (BECIA v4)**  
   👉 [`snapshot_profile_becia_v4.md`](snapshot_profile_becia_v4.md)
