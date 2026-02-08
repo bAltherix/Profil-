@@ -81,11 +81,11 @@ is stable, deterministic, and lossless.
 
 +------------------+        SSPS Session Snapshot        +------------------+
 |     BECIA v4     |  -------------------------------->  |     PaxCore      |
-|  (Runtime Layer) |                                      | (Persistence)    |
+|  (Runtime Layer) |                                      |   (Persistence)  |
 +------------------+                                      +------------------+
-^                                                           |
-|                                                           |
-+---------------- Reconstruction <---------------------------+
+        ^                                                           |
+        |                                                           |
+        +---------------- Reconstruction <---------------------------+
 
 
 ### **BECIA responsibilities**
