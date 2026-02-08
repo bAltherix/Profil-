@@ -50,20 +50,26 @@ the agent’s identity and behavioural continuity.
 
 ## 2. Design Principles
 
-- **Deterministic** — same snapshot → same reconstructed state  
-- **Minimal** — 300–800 tokens typical size  
-- **Portable** — works across runtimes and models  
-- **Model‑agnostic** — no dependency on specific LLMs  
-- **Privacy‑aligned** — no raw logs or PII beyond user_id  
-- **Schema‑versioned** — supports multiple profiles
-
-The key words “MUST”, “MUST NOT”, “SHOULD”, and “MAY” in this document are to be interpreted as normative requirements of the SSPS protocol.
+- **Deterministic**  
+  Same snapshot → same reconstructed state.
+- **Minimal**  
+  300–800 tokens typical size.
+- **Portable**  
+  Works across runtimes, models, and deployments.
+- **Model‑agnostic**  
+  SSPS does not depend on any specific LLM.
+- **Privacy‑aligned**  
+  No raw logs, no PII beyond user_id.
+- **Schema‑versioned**  
+  Supports multiple profiles (BECIA v4, generic, custom).
+- **Immutable**  
+  Snapshots are never modified in place.
 
 ---
 
-## 3. Snapshot Model (Canonical Structure)
+## 3. Snapshot Model
 
-The SSPS snapshot is a structured JSON document containing:
+An SSPS snapshot is a structured JSON document containing:
 
 - metadata (schema version, timestamps, confidence)  
 - session metadata  
@@ -80,6 +86,8 @@ The default profile for BECIA v4 is:
 schema_version: ssps-becia-v4.0
 ```
 
+Profiles define which sections are required and how they map to runtime state.
+
 ---
 
 ## 4. Validation Rules
@@ -92,7 +100,9 @@ A snapshot is valid if:
 4. `confidence ∈ [0.0, 1.0]`  
 5. all required sections are present  
 6. JSON is structurally valid  
-7. snapshot payloads MUST NOT contain raw conversational transcripts or verbatim message logs.  
+7. no raw logs or transcripts are included  
+
+Validation is performed by PaxCore before storage.
 
 ---
 
@@ -111,17 +121,30 @@ Reconstruction is deterministic:
 snapshot → core_state → BECIA runtime
 ```
 
+SSPS defines the structure; BECIA defines how the structure is interpreted.
+
 ---
 
-## 6. Profiles
+## 6. Schema Versioning & Migration
 
-Supported profiles include:
+SSPS uses semantic versioning.
 
-- `ssps-becia-v4.0` (default)  
-- `ssps-generic-v1.0`  
-- custom domain‑specific profiles  
+### Versioning Rules
 
-Profiles define which sections are required and how they map to runtime state.
+- **Backward compatibility**  
+  Newer runtimes must read older snapshots of the same MAJOR version.
+
+- **Forward compatibility (best effort)**  
+  Unknown fields may be safely ignored by older runtimes.
+
+- **Non-destructive migration**  
+  Migration occurs at load time; stored snapshots remain immutable.
+
+- **Profile isolation**  
+  Each schema profile is stored independently.
+
+These rules ensure stable evolution of the protocol without breaking existing
+deployments.
 
 ---
 
@@ -138,22 +161,47 @@ reproducible, and auditable.
 
 ## 8. Security & Privacy
 
+SSPS is designed for privacy‑aligned deployments.
+
 - no raw logs  
 - no verbatim content  
 - minimal PII (user_id only)  
 - snapshot size intentionally small  
 - compatible with GDPR‑aligned retention policies  
 
+Deployments may strengthen security through:
+
+- encryption‑at‑rest (backend‑provided)  
+- encryption‑in‑transit (TLS)  
+- access control at the storage layer  
+- key management via platform‑native systems (KMS, Vault)  
+
 ---
 
-## 9. Summary
+## 9. Operational Considerations
+
+Although SSPS does not define storage behaviour, deployments may expose
+operational metrics such as:
+
+- snapshot writes  
+- snapshot loads  
+- expired snapshots  
+- schema version distribution  
+
+These metrics support monitoring and observability without storing or exposing
+user content.
+
+---
+
+## 10. Summary
 
 SSPS provides a portable, deterministic, minimal protocol for representing
 agent state across sessions and runtimes.  
-It is the serialization layer of the BECIA → PaxCore continuity pipeline.
+It is the serialization layer of the BECIA → SSPS → PaxCore continuity pipeline.
 
 ---
 
 © 2026 b.AItherix — All Rights Reserved
+
 
 
