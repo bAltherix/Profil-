@@ -1,26 +1,23 @@
-# BECIA v4 — Intelligence Architecture Ecosystem
-### SSPS Session State Persistence System Protocol • PaxCore Memory Kernel
+# BECIA v4 — Intelligence Architecture Ecosystem  
+### SSPS Session State Persistence System • PaxCore Memory Kernel  
 ---
 
 ## Welcome
 
-This site contains the public specifications for the **BECIA v4 Intelligence
-Architecture**, the **SSPS Session State Persistence System Protocol**, and the **PaxCore Memory
-Kernel**.
+This site contains the public specifications for the **BECIA v4 Intelligence Architecture**, the **SSPS Session State Persistence System**, and the **PaxCore Memory Kernel**.
 
-Together, these components define a minimal, deterministic, privacy‑aligned
-continuity layer for LLM‑based agents.
+Together, these components define a minimal, deterministic, privacy‑aligned continuity layer for LLM‑based agents.
 
 The ecosystem is:
 
-- **model‑agnostic**  
-- **runtime‑agnostic**  
-- **interoperable**  
-- **designed for long‑term stability**  
+- model‑agnostic  
+- runtime‑agnostic  
+- interoperable  
+- designed for long‑term stability  
 
 ---
 
-## The Architecture at a Glance
+## The Architecture at a Glance  
 Below is a high‑level view of how the components interact:
 
 ### Diagram
@@ -28,18 +25,16 @@ Below is a high‑level view of how the components interact:
 ```mermaid
 sequenceDiagram
     participant BECIA as BECIA v4 (L0-L5)
-    participant SSPS as SSPS v1.0 (Snapshot Protocol)
+    participant SSPS as SSPS v1.0 (Session State Persistence System)
     participant PaxCore as PaxCore v1.0 (Memory Kernel)
 
     BECIA->>SSPS: produce core_state
     SSPS->>PaxCore: serialize -> snapshot
     PaxCore-->>SSPS: load snapshot
     SSPS-->>BECIA: reconstruct core_state
-
 ```
 
-This pipeline ensures **continuity** across sessions without storing raw logs,
-transcripts, or sensitive content.
+This pipeline ensures **continuity** across sessions without storing raw logs, transcripts, or sensitive content.
 
 ---
 
@@ -47,10 +42,10 @@ transcripts, or sensitive content.
 
 Even without implementation code, the workflow is simple:
 
-1. **BECIA** processes user input through layers L0–L5  
-2. BECIA produces a **core_state**  
-3. **SSPS** serializes core_state into a **snapshot**  
-4. **PaxCore** stores the snapshot  
+1. BECIA processes user input through layers L0–L5  
+2. BECIA produces a core_state  
+3. SSPS serializes core_state into a snapshot  
+4. PaxCore stores the snapshot  
 5. On the next session, PaxCore loads the snapshot  
 6. SSPS reconstructs core_state  
 7. BECIA resumes with continuity  
@@ -64,25 +59,24 @@ Full details are available in the specifications below.
 ### Core Documents
 
 - **BECIA v4 Architecture**  
-  👉 [`becia_architecture_spec.md`](becia_architecture_spec.md)
+  👉 `becia_architecture_spec.md`
 
-- **SSPS v1.0 Protocol Specification**  
-  👉 [`ssps_protocol_spec.md`](ssps_protocol_spec.md)
+- **SSPS v1.0 Specification**  
+  👉 `ssps_protocol_spec.md`
 
 - **PaxCore v1.0 Memory Kernel Specification**  
-  👉 [`paxcore__kernel_spec.md`](paxcore_kernel_spec.md)
+  👉 `paxcore_kernel_spec.md`
 
 - **Snapshot Profile (BECIA v4)**  
-  👉 [`snapshot_profile_becia_v4.md`](snapshot_profile_becia_v4.md)
+  👉 `snapshot_profile_becia_v4.md`
 
 ---
 
 ## Roadmap
 
-The full roadmap, including milestone dependencies, metrics, and a visual
-timeline, is available here:
+The full roadmap, including milestone dependencies, metrics, and a visual timeline, is available here:
 
-👉 [`roadmap.md`](roadmap.md)
+👉 `roadmap.md`
 
 ---
 
@@ -90,7 +84,7 @@ timeline, is available here:
 
 A complete glossary of terms used across the ecosystem:
 
-👉 [`glossary.md`](glossary.md)
+👉 `glossary.md`
 
 ---
 
@@ -109,8 +103,7 @@ Contribution templates are provided for:
 - profile definitions  
 - backend adapters  
 
-All contributions must align with the principles of minimalism, determinism,
-and privacy.
+All contributions must align with the principles of minimalism, determinism, and privacy.
 
 ---
 
@@ -124,10 +117,7 @@ This site contains **public specifications only**.
 No proprietary implementation details are included.
 
 ---
+
 ## About
 
-BECIA, SSPS, and PaxCore are developed by **M.E. Benderyszyn (b.AItherix)**  
-as part of a long‑term effort to define stable, privacy‑aligned,  
-interoperable intelligence architectures for LLM‑based systems.
-
-
+BECIA, SSPS, and PaxCore are developed by **M.E. Benderyszyn (b.AItherix)** as part of a long‑term effort to define stable, privacy‑aligned, interoperable intelligence architectures for LLM‑based systems.
