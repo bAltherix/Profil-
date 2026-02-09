@@ -56,20 +56,17 @@ Full details are available in the specifications below.
 
 ## Specifications
 
-### Core Documents
-
 - **BECIA v4 Architecture**  
-  👉 `becia_architecture_spec.md`
+  👉 [becia_architecture_spec.md](./becia_architecture_spec.md)
 
 - **SSPS v1.0 Specification**  
-  👉 `ssps_protocol_spec.md`
+  👉 [ssps_protocol_spec.md](./ssps_protocol_spec.md)
 
 - **PaxCore v1.0 Memory Kernel Specification**  
-  👉 `paxcore_kernel_spec.md`
+  👉 [paxcore_kernel_spec.md](./paxcore_kernel_spec.md)
 
 - **Snapshot Profile (BECIA v4)**  
-  👉 `snapshot_profile_becia_v4.md`
-
+  👉 [snapshot_profile_becia_v4.md](./snapshot_profile_becia_v4.md)
 ---
 
 ## Roadmap
